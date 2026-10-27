@@ -379,6 +379,9 @@
 
     tabPanels.forEach(function (panel) {
       panel.hidden = panel.dataset.tabPanel !== name;
+      if (panel.dataset.tabPanel === name && !dashboardView.hidden) {
+        panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
     });
   }
 
@@ -545,6 +548,7 @@
     const selectedStatus = status || getFieldValue('post-status') || 'draft';
     const metaTitle = (getFieldValue('post-meta-title') || title).slice(0, 60);
     const dateValue = getFieldValue('post-date');
+    const now = new Date().toISOString();
     const slug = uniqueSlug(getFieldValue('post-slug') || title, posts, id);
     const author = selectedAuthor();
     const fallbackAuthor = existingPost || {};
@@ -583,7 +587,10 @@
       pdfName: pdfNameValue,
       pdfType: pdfUpload ? pdfUpload.pdfType : (existingPost && existingPost.pdfType) || '',
       status: selectedStatus,
-      updatedAt: new Date().toISOString()
+      publishedAt: selectedStatus === 'published'
+        ? (existingPost && existingPost.status === 'published' ? existingPost.publishedAt || existingPost.updatedAt || now : now)
+        : '',
+      updatedAt: now
     };
   }
 
@@ -709,7 +716,8 @@
     formTitle.textContent = 'Edit Post';
     updateCounters();
     activateTab('basic');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    postForm.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    getField('post-title').focus({ preventScroll: true });
   }
 
   function openDeleteModal(id) {
@@ -756,6 +764,7 @@
       }
     }
 
+    const statusChangedAt = new Date().toISOString();
     const updatedPosts = posts.map(function (post) {
       if (post.id !== id) return post;
       return Object.assign({}, post, {
@@ -763,12 +772,13 @@
         imageAlt: post.imageAlt || post.title,
         metaTitle: post.metaTitle || (post.title || '').slice(0, 60),
         status: nextStatus,
-        updatedAt: new Date().toISOString()
+        publishedAt: nextStatus === 'published' ? statusChangedAt : '',
+        updatedAt: statusChangedAt
       });
     });
     await savePosts(updatedPosts);
     await renderPosts(false);
-    setStatus('Post status updated.');
+    setStatus(nextStatus === 'published' ? 'Post published.' : 'Post unpublished.');
   }
 
   function exportPosts() {
