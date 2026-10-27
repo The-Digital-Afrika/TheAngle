@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>The Angle Africa | Admin</title>
+  <style>
+    :root{--ink:#171312;--muted:#6f6762;--paper:#f6f1e9;--card:#fffdf9;--wine:#6b272a;--wine2:#43191b;--gold:#c8a252;--line:#ded4c6;--ok:#19705f;--danger:#a12b32;--shadow:0 18px 50px #2d16121a}
+    *{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:15px/1.55 Arial,sans-serif}button,input,select,textarea{font:inherit}button{cursor:pointer}.hide{display:none!important}
+    header{position:sticky;top:0;z-index:10;border-bottom:1px solid var(--line);background:#fffaf3ed;backdrop-filter:blur(12px)}.bar{width:min(1200px,calc(100% - 32px));height:72px;margin:auto;display:flex;align-items:center;justify-content:space-between;gap:20px}.brand{display:flex;align-items:center;gap:12px;font-family:Georgia,serif;font-size:22px;font-weight:700}.mark{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;background:var(--wine);color:#fff}.links{display:flex;gap:18px}.links a{color:var(--ink);font-weight:700;text-decoration:none}.links a:hover{color:var(--wine)}
+    main{width:min(1200px,calc(100% - 32px));margin:38px auto 72px}.hero{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:24px}.hero h1{font:700 clamp(38px,6vw,66px)/1 Georgia,serif;margin:0 0 8px}.hero p,.sub{margin:0;color:var(--muted)}.tools,.actions{display:flex;flex-wrap:wrap;gap:9px}
+    .panel{background:var(--card);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);padding:24px}.login{width:min(450px,100%);margin:70px auto}.login h2,.panel h2{font:700 26px/1.2 Georgia,serif;margin:0 0 7px}.grid{display:grid;grid-template-columns:minmax(320px,440px) 1fr;gap:22px;align-items:start}.form{display:grid;gap:14px;margin-top:18px}.field{display:grid;gap:6px}.field label{font-weight:800;font-size:13px}.field small{color:var(--muted)}input,select,textarea{width:100%;padding:12px;border:1px solid var(--line);border-radius:8px;background:#fff;color:var(--ink)}textarea{min-height:112px;resize:vertical}#content{min-height:220px}input:focus,select:focus,textarea:focus{outline:3px solid #c8a25242;border-color:var(--gold)}
+    .btn,.filebtn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:10px 15px;border:1px solid var(--line);border-radius:999px;background:#fff;color:var(--ink);font-weight:800;text-decoration:none}.btn.primary{border-color:var(--wine);background:var(--wine);color:#fff}.btn.primary:hover{background:var(--wine2)}.btn.soft{background:#6b272a12}.btn.danger{border-color:var(--danger);background:var(--danger);color:#fff}.filebtn input{display:none}.notice{min-height:24px;margin-top:13px;color:var(--wine);font-weight:700}
+    .summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:17px 0}.stat{border:1px solid var(--line);border-radius:10px;padding:13px;background:#fff}.stat b{display:block;font-size:24px}.stat span{color:var(--muted);font-size:12px;text-transform:uppercase;letter-spacing:.06em}.filters{display:grid;grid-template-columns:1fr 150px;gap:9px;margin:14px 0}.posts{display:grid;gap:12px}.empty{padding:28px;border:1px dashed var(--line);border-radius:10px;text-align:center;color:var(--muted)}
+    .post{border:1px solid var(--line);border-radius:11px;padding:17px;background:#fff}.posttop{display:flex;justify-content:space-between;gap:12px}.post h3{margin:8px 0 4px;font-size:18px}.post p{margin:0;color:var(--muted)}.meta{margin-top:9px;color:var(--muted);font-size:13px}.badge{display:inline-block;padding:3px 8px;border-radius:999px;background:#17131212;font-size:11px;font-weight:900;text-transform:uppercase}.badge.published{background:#19705f1c;color:var(--ok)}.post .actions{margin-top:14px}.post .btn{padding:7px 11px;font-size:12px}
+    dialog{width:min(430px,calc(100% - 32px));border:1px solid var(--line);border-radius:14px;padding:25px;box-shadow:0 24px 80px #0005}dialog::backdrop{background:#17131288}dialog h2{font-family:Georgia,serif;margin-top:0}.right{justify-content:flex-end}.file-note{font-size:12px;color:var(--muted)}
+    @media(max-width:850px){.links{display:none}.grid{grid-template-columns:1fr}.hero{align-items:start;flex-direction:column}.tools{justify-content:flex-start}}@media(max-width:520px){main,.bar{width:min(100% - 20px,1200px)}.panel{padding:17px}.filters{grid-template-columns:1fr}.summary{grid-template-columns:1fr 1fr 1fr}.posttop{display:block}.hero h1{font-size:42px}}
+  </style>
+</head>
+<body>
+  <header><div class="bar"><div class="brand"><span class="mark">A</span><span>THE ANGLE AFRICA</span></div><nav class="links"><a href="index.html">Website</a><a href="Articles.html">Articles</a><a href="Perspectives.html">Perspectives</a><a href="Podcast.html">Podcast</a></nav></div></header>
+  <main>
+    <section class="hero"><div><h1>Admin</h1><p>Create, edit, publish and back up Angle stories.</p></div><div id="tools" class="tools hide"><button class="btn soft" id="export" type="button">Download backup</button><label class="filebtn">Restore JSON<input id="import" type="file" accept="application/json,.json"></label><button class="btn" id="logout" type="button">Log out</button></div></section>
+
+    <section id="login" class="panel login">
+      <h2>Admin login</h2><p class="sub">Enter the administrator PIN to continue.</p>
+      <form id="loginForm" class="form"><div class="field"><label for="pin">Admin PIN</label><input id="pin" type="password" autocomplete="current-password" required autofocus></div><button class="btn primary" type="submit">Log in</button></form>
+      <div id="loginNotice" class="notice" aria-live="polite"></div>
+    </section>
+
+    <section id="dashboard" class="hide">
+      <div class="grid">
+        <section class="panel"><h2 id="formHeading">Create a story</h2><p class="sub">Publish immediately or save your work as a draft.</p>
+          <form id="postForm" class="form">
+            <input id="id" type="hidden">
+            <div class="field"><label for="title">Title *</label><input id="title" maxlength="180" required></div>
+            <div class="field"><label for="category">Category</label><select id="category"><option>Articles</option><option>Perspectives</option><option>Elections</option><option>Podcast</option></select></div>
+            <div class="field"><label for="author">Author *</label><input id="author" maxlength="100" required></div>
+            <div class="field"><label for="date">Publication date</label><input id="date" type="date"></div>
+            <div class="field"><label for="excerpt">Excerpt *</label><textarea id="excerpt" maxlength="500" required></textarea></div>
+            <div class="field"><label for="content">Full article *</label><textarea id="content" required></textarea></div>
+            <div class="field"><label for="image">Cover image URL</label><input id="image" type="url" placeholder="https://example.com/image.jpg"></div>
+            <div class="field"><label for="url">External/read URL</label><input id="url" placeholder="Perspectives/example.html or https://..."><small>Leave blank to use the site's generated Article.html page.</small></div>
+            <div class="field"><label for="pdf">PDF document</label><input id="pdf" type="file" accept="application/pdf,.pdf"><span id="pdfName" class="file-note">Optional, maximum 3 MB.</span></div>
+            <div class="actions"><button class="btn primary" type="submit">Publish</button><button class="btn soft" id="draft" type="button">Save draft</button><button class="btn" id="clear" type="button">New</button></div>
+          </form><div id="notice" class="notice" aria-live="polite"></div>
+        </section>
+
+        <section class="panel"><h2>Story library</h2><p class="sub">All stories managed by this dashboard.</p>
+          <div class="summary"><div class="stat"><b id="allCount">0</b><span>All</span></div><div class="stat"><b id="liveCount">0</b><span>Published</span></div><div class="stat"><b id="draftCount">0</b><span>Drafts</span></div></div>
+          <div class="filters"><input id="search" type="search" placeholder="Search stories"><select id="filter"><option value="all">All statuses</option><option value="published">Published</option><option value="draft">Drafts</option></select></div>
+          <div id="empty" class="empty">No stories yet. Create the first one.</div><div id="posts" class="posts"></div>
+        </section>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="deleteDialog"><h2>Delete this story?</h2><p>This removes it from admin storage and the website feed. This cannot be undone.</p><div class="actions right"><button class="btn" id="cancelDelete">Cancel</button><button class="btn danger" id="confirmDelete">Delete</button></div></dialog>
+  <script>
+  (() => {
+    'use strict';
+    const STORAGE_KEY='angleAdminPosts', SESSION_KEY='angleAdminSession', API='/api/posts', ADMIN_PIN='angle-admin';
+    const $=id=>document.getElementById(id); let cache=[], deleteId=null, noticeTimer;
+    const fields=['title','category','author','date','excerpt','content','image','url'];
+    const esc=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+    const localRead=()=>{try{const value=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');return Array.isArray(value)?value:[]}catch{return[]}};
+    const localSave=posts=>{try{localStorage.setItem(STORAGE_KEY,JSON.stringify(posts));return true}catch{return false}};
+    const tell=(message,login=false)=>{const node=login?$('loginNotice'):$('notice');node.textContent=message;clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>node.textContent='',5000)};
+    async function readPosts(){try{const response=await fetch(API,{cache:'no-store'});if(!response.ok)throw 0;const posts=await response.json();if(!Array.isArray(posts))throw 0;const local=localRead();cache=!posts.length&&local.length?local:posts;localSave(cache)}catch{cache=localRead()}return cache}
+    async function savePosts(posts){cache=posts;const stored=localSave(posts);try{const response=await fetch(API,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify(posts)});if(!response.ok)throw 0;return true}catch{if(!stored)tell('This browser blocks storage for downloaded files. Run server.js, or export a backup before closing.');return false}}
+    function showDashboard(){ $('login').classList.add('hide');$('dashboard').classList.remove('hide');$('tools').classList.remove('hide');render(true) }
+    function showLogin(){ $('login').classList.remove('hide');$('dashboard').classList.add('hide');$('tools').classList.add('hide') }
+    function reset(){ $('postForm').reset();$('id').value='';$('date').value=new Date().toISOString().slice(0,10);$('pdfName').textContent='Optional, maximum 3 MB.';$('formHeading').textContent='Create a story' }
+    function fileData(){const file=$('pdf').files[0];if(!file)return Promise.resolve(null);if(file.type!=='application/pdf'&&!/\.pdf$/i.test(file.name))return Promise.reject(Error('Please select a PDF file.'));if(file.size>3*1024*1024)return Promise.reject(Error('The PDF must be 3 MB or smaller.'));return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onload=()=>resolve({pdfData:reader.result,pdfName:file.name,pdfType:file.type||'application/pdf'});reader.onerror=()=>reject(Error('The PDF could not be read.'));reader.readAsDataURL(file)})}
+    function displayDate(value){if(!value)return'';const d=new Date(value+'T12:00:00');return Number.isNaN(d.getTime())?value:d.toLocaleDateString('en-ZA',{day:'numeric',month:'short',year:'numeric'})}
+    function inputDate(value){const d=value?new Date(value):new Date();return Number.isNaN(d.getTime())?new Date().toISOString().slice(0,10):d.toISOString().slice(0,10)}
+    async function upsert(status){if(!$('postForm').reportValidity())return;const existing=cache.find(p=>p.id===$('id').value);let upload;try{upload=await fileData()}catch(error){tell(error.message);return}const rawDate=$('date').value;const post={id:$('id').value||String(Date.now()),title:$('title').value.trim(),category:$('category').value,author:$('author').value.trim(),date:displayDate(rawDate),excerpt:$('excerpt').value.trim(),content:$('content').value.trim(),image:$('image').value.trim(),url:upload?upload.pdfData:$('url').value.trim(),pdfData:upload?upload.pdfData:(existing?.pdfData||''),pdfName:upload?upload.pdfName:(existing?.pdfName||''),pdfType:upload?upload.pdfType:(existing?.pdfType||''),status,createdAt:existing?.createdAt||new Date().toISOString(),updatedAt:new Date().toISOString()};if(post.pdfData)post.url=post.pdfData;const next=existing?cache.map(p=>p.id===post.id?post:p):[post,...cache];const synced=await savePosts(next);reset();render();tell(`${status==='published'?'Story published':'Draft saved'}.${synced?'':' Saved in this browser; run server.js to sync it across the site.'}`)}
+    function edit(id){const post=cache.find(p=>p.id===id);if(!post)return;$('id').value=post.id;fields.forEach(key=>{if($(key))$(key).value=post[key]||''});$('date').value=inputDate(post.date);if(post.pdfData)$('url').value='';$('pdfName').textContent=post.pdfName?`Current PDF: ${post.pdfName}`:'Optional, maximum 3 MB.';$('formHeading').textContent='Edit story';window.scrollTo({top:0,behavior:'smooth'})}
+    async function toggle(id){const next=cache.map(p=>p.id===id?{...p,status:p.status==='published'?'draft':'published',updatedAt:new Date().toISOString()}:p);await savePosts(next);render();tell('Story status updated.')}
+    function askDelete(id){deleteId=id;$('deleteDialog').showModal()}
+    async function remove(){if(!deleteId)return;await savePosts(cache.filter(p=>p.id!==deleteId));deleteId=null;$('deleteDialog').close();render();tell('Story deleted.')}
+    async function render(load=false){if(load)await readPosts();const query=$('search').value.trim().toLowerCase(),status=$('filter').value;const sorted=[...cache].sort((a,b)=>new Date(b.updatedAt||0)-new Date(a.updatedAt||0));const shown=sorted.filter(p=>(status==='all'||p.status===status)&&(!query||[p.title,p.author,p.category,p.excerpt].join(' ').toLowerCase().includes(query)));$('allCount').textContent=cache.length;$('liveCount').textContent=cache.filter(p=>p.status==='published').length;$('draftCount').textContent=cache.filter(p=>p.status!=='published').length;$('empty').classList.toggle('hide',shown.length>0);$('empty').textContent=cache.length?'No stories match your search.':'No stories yet. Create the first one.';$('posts').innerHTML=shown.map(p=>`<article class="post"><div class="posttop"><div><span class="badge ${p.status==='published'?'published':''}">${esc(p.status||'draft')}</span><h3>${esc(p.title)}</h3><p>${esc(p.excerpt||p.content)}</p><div class="meta">${esc(p.category||'Articles')} · ${esc(p.author)} · ${esc(p.date||'No date')}${p.pdfName?` · PDF: ${esc(p.pdfName)}`:''}</div></div></div><div class="actions"><button class="btn" data-act="edit" data-id="${esc(p.id)}">Edit</button><button class="btn soft" data-act="toggle" data-id="${esc(p.id)}">${p.status==='published'?'Unpublish':'Publish'}</button><button class="btn" data-act="delete" data-id="${esc(p.id)}">Delete</button></div></article>`).join('')}
+    function exportData(){const blob=new Blob([JSON.stringify(cache,null,2)],{type:'application/json'}),link=document.createElement('a');link.href=URL.createObjectURL(blob);link.download=`the-angle-admin-${new Date().toISOString().slice(0,10)}.json`;link.click();setTimeout(()=>URL.revokeObjectURL(link.href),1000)}
+    function importData(file){if(!file)return;const reader=new FileReader();reader.onload=async()=>{try{const data=JSON.parse(reader.result);if(!Array.isArray(data)||data.some(p=>!p||typeof p!=='object'))throw 0;await savePosts(data);render();tell(`${data.length} stories restored.`)}catch{tell('That file is not a valid Angle admin backup.')}finally{$('import').value=''}};reader.readAsText(file)}
+    $('loginForm').addEventListener('submit',event=>{event.preventDefault();if($('pin').value!==ADMIN_PIN){tell('Incorrect admin PIN.',true);return}sessionStorage.setItem(SESSION_KEY,'true');showDashboard()});
+    $('postForm').addEventListener('submit',event=>{event.preventDefault();upsert('published')});$('draft').onclick=()=>upsert('draft');$('clear').onclick=reset;$('logout').onclick=()=>{sessionStorage.removeItem(SESSION_KEY);$('pin').value='';showLogin()};$('export').onclick=exportData;$('import').onchange=event=>importData(event.target.files[0]);$('pdf').onchange=()=>{$('pdfName').textContent=$('pdf').files[0]?`Selected: ${$('pdf').files[0].name}`:'Optional, maximum 3 MB.'};$('search').oninput=()=>render();$('filter').onchange=()=>render();$('posts').onclick=event=>{const button=event.target.closest('[data-act]');if(!button)return;({edit,toggle,delete:askDelete})[button.dataset.act]?.(button.dataset.id)};$('cancelDelete').onclick=()=>$('deleteDialog').close();$('confirmDelete').onclick=remove;$('deleteDialog').addEventListener('close',()=>deleteId=null);
+    reset();sessionStorage.getItem(SESSION_KEY)==='true'?showDashboard():showLogin();
+  })();
+  </script>
+</body>
+</html>

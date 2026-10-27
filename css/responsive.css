@@ -1318,6 +1318,7 @@ body:has(.hero-back-button) .hero-subtitle {
 @media (max-width: 980px) {
   .header-container {
     grid-template-columns: auto auto;
+    position: relative;
   }
 
   nav,
@@ -1348,12 +1349,29 @@ body:has(.hero-back-button) .hero-subtitle {
   .tabs-container.active {
     display: grid !important;
     grid-template-columns: 1fr;
-    gap: 4px !important;
-    border-radius: 8px;
+    gap: 2px !important;
     margin-bottom: 14px;
     background: rgba(255, 250, 243, 0.98) !important;
     border: 1px solid rgba(107, 39, 42, 0.12) !important;
     box-shadow: 0 18px 38px rgba(20, 17, 17, 0.1) !important;
+  }
+
+  .tabs-container {
+    position: absolute !important;
+    left: 0 !important;
+    right: 0 !important;
+    top: 100% !important;
+    z-index: 2000;
+    width: 100% !important;
+    margin-top: 8px;
+  }
+
+  .tabs-container.active {
+    background: rgba(255, 250, 243, 0.98) !important;
+    border: 1px solid rgba(107, 39, 42, 0.12) !important;
+    border-radius: 8px !important;
+    box-shadow: 0 18px 36px rgba(20, 17, 17, 0.16) !important;
+    padding: 8px !important;
   }
 
   nav ul,
@@ -1369,6 +1387,27 @@ body:has(.hero-back-button) .hero-subtitle {
 
   .header-actions {
     justify-self: end;
+  }
+
+  .tab,
+  .tab a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .tabs-container .tab {
+    min-height: 44px;
+    padding: 0 !important;
+    border-bottom: 1px solid rgba(107, 39, 42, 0.1) !important;
+    border-radius: 0 !important;
+  }
+
+  .tabs-container .tab:last-child {
+    border-bottom: 0 !important;
+  }
+
+  .tabs-container .tab a {
+    padding: 0 14px !important;
   }
 }
 

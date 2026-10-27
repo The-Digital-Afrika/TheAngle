@@ -151,7 +151,7 @@
         return post && post.status === 'published';
       })
       .sort(function (a, b) {
-        return new Date(b.publishDate || b.updatedAt || b.createdAt || 0) - new Date(a.publishDate || a.updatedAt || a.createdAt || 0);
+        return new Date(b.publishedAt || b.updatedAt || b.createdAt || b.publishDate || 0) - new Date(a.publishedAt || a.updatedAt || a.createdAt || a.publishDate || 0);
       });
   }
 
@@ -849,6 +849,19 @@
     if (articleGrid) {
       articleGrid.insertAdjacentHTML('afterbegin', posts.map(createArticleCard).join(''));
     }
+
+    ['Elections', 'Perspectives'].forEach(function (category) {
+      const categoryGrid = document.querySelector(`[data-admin-content="category-${category.toLowerCase()}"]`);
+      if (!categoryGrid) return;
+
+      const categoryPosts = posts.filter(function (post) {
+        return post.category === category;
+      });
+
+      if (categoryPosts.length) {
+        categoryGrid.insertAdjacentHTML('afterbegin', categoryPosts.map(createArticleCard).join(''));
+      }
+    });
 
     renderPodcastPosts(posts);
     renderTagSections(posts, tags);
